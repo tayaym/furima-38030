@@ -6,12 +6,15 @@
 |--------------------|---------------------|--------------------------------|
 | nickname           | string              | null: false                    |
 | email              | string              | null: false, unique: true      |
-| password           | string              | null: false                    |
+| encrypted_password | string              | null: false                    |
+| name               | string              | null: false                    |
+| birthday           | string              | null: false                    |
 
 ### Association
 
 * has_many :items
 * has_many :address
+* has_many :purchases
 
 ## items テーブル
 
@@ -19,13 +22,25 @@
 |--------------------|-------------------|----------------------------------|
 | name               | string            | null: false                      |
 | profile            | text              | null: false                      |
-| category           | string            | null: false                      |
+| category_id        | string            | null: false                      |
 | price              | integer           | null: false                      |
+| delivery           | string            | null: false                      |
 
 ### Association
 
 - belongs_to :user
 - has_many :address
+
+## purchases テーブル
+
+| Column             | Type                | Options                         |
+|--------------------|---------------------|---------------------------------|
+| price              | integer             | null: false                     |
+
+### Association
+
+- belongs_to :address
+
 
 ## address テーブル
 
@@ -35,7 +50,10 @@
 | prefecture         | integer             | null: false                     |
 | city               | string              | null: false                     |
 | house_number       | string              | null: false                     |
-| building_name      | string              | null: false                     |
+| building_name      | string              |                                 |
+| card_number        | string              | null: false                     |
+| expiration_date    | string              | null: false                     |
+| security_code      | string              | null: false                     |
 
 ### Association
 
