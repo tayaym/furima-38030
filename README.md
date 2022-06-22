@@ -2,48 +2,49 @@
 
 ## users テーブル
 
-| Column             | Type                | Options                        |
-|--------------------|---------------------|--------------------------------|
-| nickname           | string              | null: false                    |
-| email              | string              | null: false, unique: true      |
-| encrypted_password | string              | null: false                    |
-| name               | string              | null: false                    |
-| birthday           | string              | null: false                    |
+| Column                | Type                | Options                        |
+|-----------------------|---------------------|--------------------------------|
+| nickname              | string              | null: false                    |
+| email                 | string              | null: false, unique: true      |
+| encrypted_password    | string              | null: false                    |
+| last.name_full.width  | string              | null: false                    |
+| last.name_katakana    | string              | null: false                    |
+| first.name_full.width | string              | null: false                    |
+| first.name_katakana   | string              | null: false                    |
+| birthday              | date                | null: false                    |
 
 ### Association
 
 * has_many :items
-* has_many :address
-* has_many :purchases
 
 ## items テーブル
 
 | Column             | Type              | Options                          |
 |--------------------|-------------------|----------------------------------|
 | name               | string            | null: false                      |
+| image              | string            | null: false                      |
 | profile            | text              | null: false                      |
 | category_id        | string            | null: false                      |
-| price              | integer           | null: false                      |
+| state              | string            | null: false                      |
 | delivery           | string            | null: false                      |
+| region             | string            | null: false                      |
+| days               | string            | null: false                      |
+| price              | integer           | null: false                      |
 
 ### Association
 
-- belongs_to :user
-- has_many :address
+- belongs_to :purchase
 
 ## purchases テーブル
 
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| price              | integer             | null: false                     |
-| card_number        | string              | null: false                     |
-| expiration_date    | string              | null: false                     |
-| security_code      | string              | null: false                     |
+| buyer_id           | string              | null: false, foreign_key: true  |
+| item_id            | string              | null: false, foreign_key: true  |
 
 ### Association
 
-- belongs_to :address
-
+- has_one :address
 
 ## address テーブル
 
@@ -54,8 +55,8 @@
 | city               | string              | null: false                     |
 | house_number       | string              | null: false                     |
 | building_name      | string              |                                 |
+| telephone_number   | string              | null: false                     |
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
+- belongs_to :purchase
