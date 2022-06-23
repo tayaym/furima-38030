@@ -24,9 +24,9 @@
 | profile            | text              | null: false                      |
 | category_id        | integer           | null: false                      |
 | state_id           | integer           | null: false                      |
-| delivery_id        | references        | null: false, foreign_key: true   |
-| region_id          | references        | null: false, foreign_key: true   |
-| time_count_id      | references        | null: false, foreign_key: true   |
+| delivery_id        | integer           | null: false, foreign_key: true   |
+| region_id          | integer           | null: false, foreign_key: true   |
+| time_count_id      | integer           | null: false, foreign_key: true   |
 | price              | references        | null: false, foreign_key: true   |
 
 ### Association
@@ -37,12 +37,13 @@
 
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| buyer              | references          | null: false                     |
+| buyer              | references          | null: false, foreign_key: true  |
 | item               | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :user
 - belongs_to :item
+- belongs_to :address
 
 ## address テーブル
 
@@ -51,9 +52,9 @@
 | postal_code        | string              | null: false                     |
 | prefecture_id      | integer             | null: false                     |
 | city               | string              | null: false                     |
-| house_number       | references          | null: false, foreign_key: true  |
-| building_name      | references          | foreign_key: true               |
-| telephone_number   | references          | null: false, foreign_key: true  |
+| house_number       | string              | null: false                     |
+| building_name      | string              |                                 |
+| telephone_number   | string              | null: false                     |
 
 ### Association
 - belongs_to :purchase
