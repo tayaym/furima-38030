@@ -12,6 +12,7 @@
 | first_name_full_width | string              | null: false                    |
 | first_name_katakana   | string              | null: false                    |
 | birthday              | date                | null: false                    |
+| item                  | references          | null: false, foreign_key: true |
 
 ### Association
 * has_many :purchases
@@ -31,7 +32,7 @@
 | price              | integer           | null: false                      |
 
 ### Association
-- has_one :user
+- has_one :users
 - has_one :purchase
 
 ## purchases テーブル
@@ -50,14 +51,13 @@
 
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| user               | references          | null: false, foreign_key: true  |
-| item               | references          | null: false, foreign_key: true  |
 | postal_code        | string              | null: false                     |
 | prefecture_id      | integer             | null: false                     |
 | city               | string              | null: false                     |
 | house_number       | string              | null: false                     |
 | building_name      | string              |                                 |
 | telephone_number   | string              | null: false                     |
+| purchase           | references          | null: false, foreign_key: true  |
 
 ### Association
 - belongs_to :purchase
