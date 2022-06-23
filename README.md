@@ -21,24 +21,24 @@
 
 | Column             | Type              | Options                          |
 |--------------------|-------------------|----------------------------------|
-| name               | string            | null: false, foreign_key: true   |
-| profile            | text              | null: false, foreign_key: true   |
-| category_id        | integer           | null: false, foreign_key: true   |
+| name               | string            | null: false                      |
+| profile            | text              | null: false                      |
+| category_id        | integer           | null: false                      |
 | state_id           | integer           | null: false                      |
 | delivery_id        | integer           | null: false                      |
 | region_id          | integer           | null: false                      |
 | time_count_id      | integer           | null: false                      |
-| price              | references        | null: false, foreign_key: true   |
+| price              | integer           | null: false                      |
 
 ### Association
-- belongs_to :user
-- has_one :purchases
+- has_one :user
+- has_one :purchase
 
 ## purchases テーブル
 
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
-| user               | string              | null: false, foreign_key: true  |
+| user               | references          | null: false, foreign_key: true  |
 | item               | references          | null: false, foreign_key: true  |
 
 ### Association
@@ -50,12 +50,14 @@
 
 | Column             | Type                | Options                         |
 |--------------------|---------------------|---------------------------------|
+| user               | references          | null: false, foreign_key: true  |
+| item               | references          | null: false, foreign_key: true  |
 | postal_code        | string              | null: false                     |
 | prefecture_id      | integer             | null: false                     |
 | city               | string              | null: false                     |
-| house_number       | string              | null: false, foreign_key: true  |
-| building_name      | string              | foreign_key: true               |
-| telephone_number   | string              | null: false,foreign_key: true   |
+| house_number       | string              | null: false                     |
+| building_name      | string              |                                 |
+| telephone_number   | string              | null: false                     |
 
 ### Association
 - belongs_to :purchase
