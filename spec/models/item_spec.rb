@@ -14,7 +14,7 @@ RSpec.describe Item, type: :model do
     end
 
     context '商品出品情報が保存できない場合' do
-      it 'ログインしていないと商品出品情報が保存できない' do
+      it 'userが紐付いていなければ出品できない' do
         @item.user = nil
         @item.valid?
         expect(@item.errors.full_messages).to include("User must exist")
@@ -114,6 +114,12 @@ RSpec.describe Item, type: :model do
         @item.time_count_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Time count must be other than 1")
+      end
+
+      it '商品名が空では出品できない' do
+        @item.name = ''
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Name can't be blank")
       end
     end
   end

@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :delivery_id, presence: true, numericality: { other_than: 1 }
   validates :region_id, presence: true, numericality: { other_than: 1 }
   validates :time_count_id, presence: true, numericality: { other_than: 1 }
-  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, only_integer: true
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
