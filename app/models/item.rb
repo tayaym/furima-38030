@@ -4,14 +4,15 @@ class Item < ApplicationRecord
   # has_one :purchase
   has_one_attached :image
 
-  validates :name, presence: true 
+  validates :name, presence: true
+  validates :image, presence: true
   validates :profile, presence: true
-  validates :category_id, presence: true
-  validates :state_id, presence: true
-  validates :delivery_id, presence: true
-  validates :region_id, presence: true
-  validates :time_count_id, presence: true
-  validates :price, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
+  validates :category_id, presence: true, numericality: { other_than: 1 }
+  validates :state_id, presence: true, numericality: { other_than: 1 }
+  validates :delivery_id, presence: true, numericality: { other_than: 1 }
+  validates :region_id, presence: true, numericality: { other_than: 1 }
+  validates :time_count_id, presence: true, numericality: { other_than: 1 }
+  validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }, format: { with: /\A[0-9]+\z/ }
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
