@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
 
 
   def index
-    @items = Item.all.order("created_at DESC")
+    # @items = Item.all.order("created_at DESC")
 
   end
 
@@ -24,24 +24,24 @@ class ItemsController < ApplicationController
   def edit
   end
 
-  def update
-    if @item.save
-      redirect_to item_path
-    else
-      render :edit
-    end
-  end
+  # def update
+  #   if @item.save
+  #     redirect_to item_path
+  #   else
+  #     render :edit
+  #   end
+  # end
 
-  def show
-  end
+  # def show
+  # end
 
-  def destroy
-    if current_user.id == @item.user_id
-      @item.destroy
-    else
-      redirect_to root_path
-    end
-  end
+  # def destroy
+  #   if current_user.id == @item.user_id
+  #     @item.destroy
+  #   else
+  #     redirect_to root_path
+  #   end
+  # end
 
   private
 
