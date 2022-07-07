@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  before_action :authenticate_user!,  except: [:index]
-  before_action :set_item, only: [:edit, :update, :show, :destroy]
+  before_action :authenticate_user!,  except: [:show, :index]
+  before_action :set_item, only: [:show]
 
 
   def index
@@ -32,8 +32,8 @@ class ItemsController < ApplicationController
   #   end
   # end
 
-  # def show
-  # end
+  def show
+  end
 
   # def destroy
   #   if current_user.id == @item.user_id
