@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!,  except: [:show, :index]
   before_action :set_item, only: [:edit, :update, :show, :destroy]
-
+  before_action :contributor_confirmation, only: [:edit]
 
   def index
     @items = Item.all.order("created_at DESC")
@@ -49,6 +49,10 @@ class ItemsController < ApplicationController
   end
 
   private
+
+  def contributor_confirmation
+    redirect_to root_path if current_user != @item.user || @item.order.present?
+  end
 
   def item_params
     params.require(:item).permit(:name, :image, :profile, :category_id, :state_id, :delivery_id, :region_id, :time_count_id, :price, :user).merge(user_id: current_user.id)
