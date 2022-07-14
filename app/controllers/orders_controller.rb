@@ -3,14 +3,12 @@ class OrdersController < ApplicationController
   before_action :non_purchased_item, only: [:index, :create]
 
   def index
-    @item = Item.find(params[:item_id])
     @order_form = OrderAddress.new
   end
 
   def create
     @order_form = OrderAddress.new(order_params)
     if @order_form.valid?
-      @item = Item.find(params[:item_id])
       pay_item
       @order_form.save
       redirect_to root_path
@@ -26,7 +24,7 @@ class OrdersController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = "sk_test_05c5cf09605929681d2d0372"
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
     Payjp::Charge.create(
       amount: @item.price,
       card: params[:token],

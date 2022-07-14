@@ -54,7 +54,7 @@ RSpec.describe OrderAddress, type: :model do
         it '郵便番号が空だと保存できないこと' do
           @order_address.postal_code = ''
           @order_address.valid?
-          expect(@order_address.errors.full_messages).to include("Postal code can't be blank", 'Postal code is invalid. Include hyphen(-)')
+          expect(@order_address.errors.full_messages).to include("Postal code can't be blank")
         end
         it '郵便番号にハイフンがないと保存できないこと' do
           @order_address.postal_code = 0000000
@@ -93,6 +93,7 @@ RSpec.describe OrderAddress, type: :model do
         end
         it '電話番号が12桁以上あると保存できないこと' do
           @order_address.telephone_number = 00000000000000000
+          @order_address.telephone_number = 000000000
           @order_address.valid?
           expect(@order_address.errors.full_messages).to include('Telephone number is invalid')
         end
