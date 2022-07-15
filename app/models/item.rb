@@ -10,7 +10,7 @@ class Item < ApplicationRecord
   validates :category_id, presence: true, numericality: { other_than: 1 }
   validates :state_id, presence: true, numericality: { other_than: 1 }
   validates :delivery_id, presence: true, numericality: { other_than: 1 }
-  validates :region_id, presence: true, numericality: { other_than: 1 }
+  validates :region_id, presence: true, numericality: { other_than: 0 }
   validates :time_count_id, presence: true, numericality: { other_than: 1 }
   validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
 
